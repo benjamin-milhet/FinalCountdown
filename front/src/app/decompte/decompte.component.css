@@ -1,0 +1,26 @@
+/* Style du conteneur du compte à rebours */
+.compte-a-rebours {
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  font-family: 'Arial', sans-serif;
+  margin: 0 auto; /* Centrage horizontal */
+  max-width: 400px; /* Ajustez la largeur selon vos besoins */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre pour un effet "flottant" */
+  animation: pulse 2s infinite; /* Animation pour indiquer le temps qui passe */
+}
+
+/* Style pour chaque unité de temps */
+.temps {
+  font-size: 2em; /* Augmenter la taille du texte */
+  margin: 10px 0;
+}
+
+/* Animation pour donner une impression de pulsation */
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); }
+  100% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+}

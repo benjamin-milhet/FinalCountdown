@@ -11,7 +11,7 @@ export class FormulaireComponent implements OnInit{
   form: FormGroup;
   questions: Question[] = [];
   currentPage = 0;
-  questionsPerPage = 10;
+  questionsPerPage = 6;
   totalQuestions = 30;
 
   constructor(private fb: FormBuilder) {
@@ -142,7 +142,42 @@ export class FormulaireComponent implements OnInit{
       },
       {
         id: 9,
-        text: 'Est ce que vous vivez à la campagne ou dans une ville ?',
+        text: 'Est-ce que vous possédez une couverture santé ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Oui', value: '1' },
+          { label: 'Non', value: '2' },
+          { label: 'Ne sais pas', value: '3' }
+        ]
+      },
+      {
+        id: 10,
+        text: 'Est-ce que vous possédez un handicap ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Mental', value: '1' },
+          { label: 'Visuel', value: '2' },
+          { label: 'L\'ouïe', value: '3' },
+          { label: 'Parole', value: '4' },
+          { label: 'Locomoteurs', value: '5' },
+          { label: 'Multiple', value: '6' },
+          { label: 'Pas de handicap', value: '0' },
+          { label: 'Autres', value: '7' },
+        ]
+      },
+      {
+        id: 11,
+        text: 'Est-ce que vous possédez un traitement régulier ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Oui', value: '2' },
+          { label: 'Oui mais pas régulier', value: '1' },
+          { label: 'Non', value: '3' },
+        ]
+      },
+      {
+        id: 12,
+        text: 'Est-ce que vous vivez à la campagne ou dans une ville ?',
         fieldType: 'select',
         options: [
           { label: 'Campagne', value: '1' },
@@ -150,7 +185,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 10,
+        id: 13,
         text: 'Est-ce que vous ête propriétaire ?',
         fieldType: 'select',
         options: [
@@ -160,7 +195,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 11,
+        id: 14,
         text: 'Quelle est la taille de terrain possédé ?',
         fieldType: 'select',
         options: [
@@ -173,7 +208,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 12,
+        id: 15,
         text: 'Comment avez-vous accès à l\'eau potable ?',
         fieldType: 'select',
         options: [
@@ -189,7 +224,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 13,
+        id: 16,
         text: 'Est-ce que l\'eau de votre robinet est filtrée ?',
         fieldType: 'select',
         options: [
@@ -198,7 +233,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 14,
+        id: 17,
         text: 'Est-ce que les toilettes sont partagées ?',
         fieldType: 'select',
         options: [
@@ -207,7 +242,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 15,
+        id: 18,
         text: 'Est-ce que votre logement a accès à l\'électricité ?',
         fieldType: 'select',
         options: [
@@ -216,7 +251,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 16,
+        id: 19,
         text: 'Quelle est la principale source d\'énergie pour l\'éclairage ?',
         fieldType: 'select',
         options: [
@@ -228,7 +263,42 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 17,
+        id: 20,
+        text: 'Quelle est la principale source d\'énergie pour cuisiner ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Bois de chauffage', value: "1" },
+          { label: 'Résidus de culture', value: "2" },
+          { label: 'Bouse de vache', value: "3" },
+          { label: 'Charbon', value: "4" },
+          { label: 'Kérosène', value: "5" },
+          { label: 'GPL', value: "6" },
+          { label: 'Électricité', value: "7" },
+          { label: 'Biogaz', value: "8" },
+          { label: 'Autre', value: "9" },
+          { label: 'Pas de cuisine', value: "0" },
+        ]
+      },
+      {
+        id: 21,
+        text: 'Quelle est le nombre de pièce d\'habitation dans la maison ?',
+        fieldType: 'select',
+        options: [
+          { label: '0 (Premier enfant)', value: 0 },
+          { label: '1', value: '1' },
+          { label: '2', value: '2' },
+          { label: '3', value: '3' },
+          { label: '4', value: '4' },
+          { label: '5', value: '5' },
+          { label: '6', value: '6' },
+          { label: '7', value: '7' },
+          { label: '8', value: '8' },
+          { label: '9', value: '9' },
+          { label: '10', value: '10' }
+        ]
+      },
+      {
+        id: 22,
         text: 'Est-ce que vous disposez d\'une cuisine ?',
         fieldType: 'select',
         options: [
@@ -239,7 +309,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 18,
+        id: 23,
         text: 'Est-ce que vous fumez ?',
         fieldType: 'select',
         options: [
@@ -251,7 +321,7 @@ export class FormulaireComponent implements OnInit{
         ]
       },
       {
-        id: 19,
+        id: 24,
         text: 'Est-ce que vous consommez régulièrement de l\'alcool ?',
         fieldType: 'select',
         options: [
@@ -262,18 +332,7 @@ export class FormulaireComponent implements OnInit{
           { label: 'Ne sais pas', value: "5" }
         ]
       },
-      {
-        id: 20,
-        text: 'Est-ce que vous possédez un véhicule ?',
-        fieldType: 'select',
-        options: [
-          { label: 'Poussé par l\'animal', value: "1" },
-          { label: 'Poussé par une machine', value: "2" },
-          { label: 'Autres', value: "3" },
-          { label: 'Aucun', value: "4" }
-        ]
-      },
-      { id: 21, text: 'Veuillez cocher les objets et véhicules que vous posséder ?', fieldType: 'checkbox'},
+      { id: 25, text: 'Veuillez cocher les objets et véhicules que vous posséder ?', fieldType: 'checkbox'},
 
     ];
   }
@@ -306,7 +365,6 @@ export class FormulaireComponent implements OnInit{
     formControls['is_scooter'] = new FormControl(false);
     formControls['is_car'] = new FormControl(false);
     formControls['is_tractor'] = new FormControl(false);
-
 
     this.form = this.fb.group(formControls);
   }
