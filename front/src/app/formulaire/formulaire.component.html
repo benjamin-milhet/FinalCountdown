@@ -1,0 +1,82 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <!-- Boucle pour itérer sur les questions de la page actuelle -->
+    <div *ngFor="let question of questions.slice(currentPage * questionsPerPage, (currentPage + 1) * questionsPerPage)" class="form-group">
+      <label>{{ question.text }}</label>
+      <div [ngSwitch]="question.fieldType">
+        <input *ngSwitchCase="'text'" type="text" [formControlName]="question.id.toString()" class="form-control">
+        <input *ngSwitchCase="'number'" type="number" [formControlName]="question.id.toString()" class="form-control" min="1" max="120">
+        <select *ngSwitchCase="'select'" [formControlName]="question.id.toString()" class="form-control">
+          <option *ngFor="let option of question.options" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngSwitchCase="'radio'">
+          <div *ngFor="let option of question.options" class="form-check">
+            <input type="radio" [formControlName]="question.id.toString()" [value]="option" class="form-check-input">
+            <label class="form-check-label">{{ option }}</label>
+          </div>
+        </div>
+        <div *ngIf="currentPage === totalQuestions / questionsPerPage - 1">
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_radio" formControlName="is_radio">
+            <label class="checkbox-label" for="is_radio">Radio</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_television" formControlName="is_television">
+            <label class="checkbox-label" for="is_television">Télévision</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_computer" formControlName="is_computer">
+            <label class="checkbox-label" for="is_computer">Ordinateur</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_telephone" formControlName="is_telephone">
+            <label class="checkbox-label" for="is_telephone">Téléphone</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_washing_machine" formControlName="is_washing_machine">
+            <label class="checkbox-label" for="is_washing_machine">Machine à laver</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_refrigerator" formControlName="is_refrigerator">
+            <label class="checkbox-label" for="is_refrigerator">Réfrigérateur</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_sewing_machine" formControlName="is_sewing_machine">
+            <label class="checkbox-label" for="is_sewing_machine">Machine à coudre</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_bicycle" formControlName="is_bicycle">
+            <label class="checkbox-label" for="is_bicycle">Vélo</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_water_pump" formControlName="is_water_pump">
+            <label class="checkbox-label" for="is_water_pump">Pompe à eau</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_scooter" formControlName="is_scooter">
+            <label class="checkbox-label" for="is_scooter">Scooter</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_car" formControlName="is_car">
+            <label class="checkbox-label" for="is_car">Voiture</label>
+          </div>
+          <div class="checkbox-container">
+            <input class="custom-checkbox" type="checkbox" id="is_tractor" formControlName="is_tractor">
+            <label class="checkbox-label" for="is_tractor">Tracteur</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons de Pagination -->
+    <div class="form-group">
+      <button type="button" (click)="previousPage()" *ngIf="currentPage > 0" class="btn btn-custom mr-2">Précédent</button>
+      <button type="button" (click)="nextPage()" *ngIf="currentPage < totalQuestions / questionsPerPage - 1" class="btn btn-custom mr-2">Suivant</button>
+      <button type="submit" *ngIf="currentPage === totalQuestions / questionsPerPage - 1" class="btn btn-custom">Soumettre</button>
+    </div>
+  </form>
+</div>
+
+
+
+
