@@ -7,7 +7,6 @@
   max-width: 600px; /* Ajustez la largeur maximale selon vos besoins */
   border-radius: 8px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ombre portée pour l'effet "flottant" */
-  margin-top: 50px; /* Espace en haut */
   margin-bottom: 50px; /* Espace en bas */
 }
 

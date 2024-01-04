@@ -3,6 +3,6 @@
   <img src="assets/logo-TFC-removebg.png" alt="Logo" class="logo">
 </div>
 
-<app-formulaire></app-formulaire>
+<app-formulaire *ngIf="!dateMort"></app-formulaire>
 
-<app-decompte></app-decompte>
+<app-decompte *ngIf="dateMort" [targetDate]="dateMort"></app-decompte>

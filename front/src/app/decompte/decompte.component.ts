@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-decompte',
@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./decompte.component.css']
 })
 export class DecompteComponent implements OnInit {
-  targetDate = new Date("2024-12-31T23:59:59"); // Remplacez par votre date cible
+  @Input() targetDate: string = "2077-01-01T00:00:00";
   timeLeft: any = {};
 
   constructor() { }
@@ -17,8 +17,9 @@ export class DecompteComponent implements OnInit {
   }
 
   updateCountdown() {
+    const target = new Date(this.targetDate);
     const now = new Date();
-    const difference = this.targetDate.getTime() - now.getTime();
+    const difference = target.getTime() - now.getTime();
 
     if (difference > 0) {
       this.timeLeft = {

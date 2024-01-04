@@ -86,7 +86,7 @@ export class FormulaireComponent implements OnInit{
         text: 'Quel est votre rang de naissance au sein de votre famille ?',
         fieldType: 'select',
         options: [
-          { label: '0 (Premier enfant)', value: 0 },
+          { label: '0 (Premier enfant)', value: '0' },
           { label: '1', value: '1' },
           { label: '2', value: '2' },
           { label: '3', value: '3' },
@@ -284,7 +284,7 @@ export class FormulaireComponent implements OnInit{
         text: 'Quelle est le nombre de pièce d\'habitation dans la maison ?',
         fieldType: 'select',
         options: [
-          { label: '0 (Premier enfant)', value: 0 },
+          { label: '0', value: '0' },
           { label: '1', value: '1' },
           { label: '2', value: '2' },
           { label: '3', value: '3' },
@@ -302,9 +302,9 @@ export class FormulaireComponent implements OnInit{
         text: 'Est-ce que vous disposez d\'une cuisine ?',
         fieldType: 'select',
         options: [
-          { label: 'Cuisiner à l\'intérieur de la maison', value: "1" },
+          { label: 'Cuisine à l\'intérieur de la maison', value: "1" },
           { label: 'N\'a pas de cuisine', value: "2" },
-          { label: 'Cuisiner à l\'extérieur de la maison', value: "3" },
+          { label: 'Cuisine à l\'extérieur de la maison', value: "3" },
           { label: 'Autres', value: "5" },
         ]
       },
@@ -347,7 +347,38 @@ export class FormulaireComponent implements OnInit{
           Validators.max(120)
         ]);
       } else if (question.fieldType === 'select' && question.options && question.options.length > 0) {
-        formControls[question.id.toString()] = new FormControl(question.options[0].value);
+        switch (question.id) {
+            case 6:
+              formControls[question.id.toString()] = new FormControl(question.options[7].value);
+              break;
+            case 8:
+              formControls[question.id.toString()] = new FormControl(question.options[21].value);
+              break;
+            case 10:
+              formControls[question.id.toString()] = new FormControl(question.options[6].value);
+              break;
+            case 11:
+              formControls[question.id.toString()] = new FormControl(question.options[2].value);
+              break;
+            case 17:
+              formControls[question.id.toString()] = new FormControl(question.options[1].value);
+              break;
+            case 20:
+              formControls[question.id.toString()] = new FormControl(question.options[6].value);
+              break;
+            case 21:
+              formControls[question.id.toString()] = new FormControl(question.options[2].value);
+              break;
+            case 23:
+              formControls[question.id.toString()] = new FormControl(question.options[3].value);
+              break;
+            case 24:
+              formControls[question.id.toString()] = new FormControl(question.options[3].value);
+              break;
+            default:
+              formControls[question.id.toString()] = new FormControl(question.options[0].value);
+              break;
+        }
       } else {
         formControls[question.id.toString()] = new FormControl('');
       }
@@ -385,6 +416,8 @@ export class FormulaireComponent implements OnInit{
     if (this.form.valid) {
       const data = this.form.value;
       console.log(data);
+      localStorage.setItem('date_mort', "2077-01-01T00:00:00");
+      location.reload();
     }
   }
 
