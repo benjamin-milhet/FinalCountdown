@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {Question} from '../models/question.model';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-formulaire',
@@ -14,7 +15,7 @@ export class FormulaireComponent implements OnInit{
   questionsPerPage = 6;
   totalQuestions = 30;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.form = this.fb.group({});
   }
 
@@ -416,8 +417,13 @@ export class FormulaireComponent implements OnInit{
     if (this.form.valid) {
       const data = this.form.value;
       console.log(data);
-      localStorage.setItem('date_mort', "2077-01-01T00:00:00");
-      location.reload();
+      this.http.post<any>('http://localhost:5000/getDate', data).subscribe(response => {
+        console.log(response.date);
+        localStorage.setItem('date_mort', response.date);
+        location.reload();
+      });
+
+
     }
   }
 
