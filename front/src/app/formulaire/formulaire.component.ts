@@ -27,60 +27,252 @@ export class FormulaireComponent implements OnInit{
     // Ici, charger ou définir vos questions
     this.questions = [
       { id: 1, text: 'Quel est votre âge ?', fieldType: 'number' },
-      { id: 2, text: 'Quel est votre sexe ?', fieldType: 'select', options: ['Homme', 'Femme'] },
-      { id: 3, text: 'Quel est votre statut marital ?', fieldType: 'select', options: ['Célibataire', 'Marié(e)', 'Divorcé(e)', 'Veuf(ve)', 'Remarié(e)', 'Non précisé'] },
-      { id: 4, text: 'Quel est votre statut professionnel ?', fieldType: 'select', options: ['Cultivateur', 'Ouvrier agricole salarié', 'Travailleur salarié non agricole', 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - travailleurs à leur compte', 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Employeurs', 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Travailleurs familiaux non rémunérés', 'Salariés réguliers', 'N\'a pas travaillé mais était à la recherche d\'un emploi et/ou disponible pour travailler', 'A fréquenté un établissement d\'enseignement', 'S\'occupe des tâches ménagères courantes', 'Mendiants', 'Prostituées/travailleurs du sexe', 'Rentiers, retraités, autres bénéficiaires de transferts de fonds', 'Incapable de travailler en raison d\'un handicap', 'Trop âgés pour travailler', 'Autres'] },
-      { id: 5, text: 'Quel est votre plus haut niveau de qualification ?', fieldType: 'select', options: ['Analphabète', 'Primaire', 'Collège', 'Lycée', 'BTS/DUT ou equivalent BAC+2/BAC+3', 'BAC+5 ou supérieur', 'Autres'] },
-      { id: 6, text: 'Quel est votre religion ?', fieldType: 'select', options: ['Hindous', 'Musulman', 'Chrétien', 'Sikh', 'Bouddhiste', 'Jain', 'Autres', 'Sans religion'] },
-      { id: 7, text: 'Quel est votre rang de naissance au sein de votre famille ?', fieldType: 'select', options: ['0 (Premier enfant)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
-      { id: 8, text: 'Est-ce que vous êtes diagnostiqué pour une maladie ?', fieldType: 'select', options: [
-          "Diabète",
-          "Hypertension",
-          "Maladie cardiaque chronique",
-          "Infarctus du myocarde/crise cardiaque",
-          "Accident vasculaire cérébral/accident cérébrovasculaire",
-          "Epilepsie",
-          "Asthme/insuffisance respiratoire chronique",
-          "Goitre/trouble thyroïdien",
-          "Tuberculose",
-          "Lèpre",
-          "Cancer-Système respiratoire",
-          "Cancer-Système gastro-intestinal",
-          "Cancer-Système génito-urinaire",
-          "Cancer du sein",
-          "Calcul rénal",
-          "Insuffisance rénale chronique",
-          "Calcul biliaire/cholécystite",
-          "Insuffisance hépatique chronique",
-          "Arthrite rhumatoïde/ostéoarthrite",
-          "Maladies cutanées chroniques - psoriasis",
-          "Autres (hernie, hydrocèle, ulcère gastroduodénal, etc.)",
-          "Non diagnostiqué",
-          "Cataracte",
-          "Glaucome",
-          "Sinusite, Amygdalite",
-          "Flourose",
-          "Pyorrhée",
-          "Rhumatisme articulaire aigu/Maladie cardiaque rhumatismale",
-          "Tumeur (tout type)",
-          "Cancer du sang/leucémie",
-          "Cancer de la peau",
-          "Piles/fissure anale, Fistule anale",
-          "Anémie",
-          "Autres (Hernie, Hydrocèle, Ulcère gastroduodénal, etc.) - utilisé dans la première et la deuxième enquête de mise à jour uniquement"
-        ] },
-      { id: 9, text: 'Est ce que vous vivez à la campagne ou dans une ville ?', fieldType: 'select', options: ['Campagne', 'Ville'] },
-      { id: 10, text: 'Est-ce que vous ête propriétaire ?', fieldType: 'select', options: ['Propriétaire', 'Locataire', 'Autres'] },
-      { id: 11, text: 'Quelle est la taille de terrain possédé ?', fieldType: 'select', options: ['Moins de 200m2', 'Entre 200 et 1 000m2', 'Entre 1 000 et 4 000m2', 'Entre 4 000 et 10 000m2', 'Plus de 10 000m2', 'Non propriétaire de terrain'] },
-      { id: 12, text: 'Comment avez-vous accès à l\'eau potable ?', fieldType: 'select', options: ['Eau courante dans le logement', 'Robinet public', 'Pompe à main', 'Puits tubulaire ou forage', 'Puits creusé protégé', 'Puits creusé non protégé', 'Citerne/camion/chariot avec eau', 'Eau de surface', 'Autres sources'] },
-      { id: 13, text: 'Est-ce que l\'eau de votre robinet est filtré ?', fieldType: 'select', options: ['Oui', 'Non'] },
-      { id: 14, text: 'Est-ce que les toilettes sont partagées ?', fieldType: 'select', options: ['Oui', 'Non'] },
-      { id: 15, text: 'Est-ce que votre logement à accès à l\'électricité ?', fieldType: 'select', options: ['Oui', 'Non'] },
-      { id: 16, text: 'Quelle est la principale source d\'énergie pour l\'éclairage ?', fieldType: 'select', options: ['Électricité', 'Kérosène', 'Solaire', 'Autres', 'Pas d\'éclairage'] },
-      { id: 17, text: 'Est-ce que vous disposez d\'une cuisine ?', fieldType: 'select', options: ['Cuisiner à l\'intérieur de la maison', 'N\'a pas de cuisine', 'Cuisiner à l\'extérieur de la maison', 'Autres', 'Pas d\'éclairage'] },
-      { id: 18, text: 'Est-ce que vous fumez ?', fieldType: 'select', options: ['Fumeur habituel', 'Fumeur occasionnel', 'Ex-fumeur', 'N\'a jamais fumé', 'Ne sais pas'] },
-      { id: 19, text: 'Est-ce que vous consommez régulièrement de l\'alcool ?', fieldType: 'select', options: ['Buveur habituel', 'Buveur occasionnel', 'Ex-buveur', 'N\'a jamais bu', 'Ne sais pas'] },
-      { id: 20, text: 'Est-ce que vous possédez un véhicule ?', fieldType: 'select', options: ['Poussé par l\'animal', 'Poussé par une machine', 'Autres', 'Aucun'] },
+      { id: 2, text: 'Quel est votre sexe ?', fieldType: 'select', options: [{ label: 'Homme', value: '1' }, { label: 'Femme', value: '2' }] },
+      { id: 3, text: 'Quel est votre statut marital ?', fieldType: 'select', options: [{ label: 'Célibataire', value: '1' }, { label: 'Marié(e)', value: '2' }, { label: 'Remarié(e)', value: '4' }, { label: 'Veuf(ve)', value: '5' }, { label: 'Divorcé(e)', value: '6' }, { label: 'Non précisé', value: '8' }] },
+      {
+        id: 4,
+        text: 'Quel est votre statut professionnel ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Cultivateur', value: '1' },
+          { label: 'Ouvrier agricole salarié', value: '2' },
+          { label: 'Travailleur salarié non agricole', value: '3' },
+          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - travailleurs à leur compte', value: '4' },
+          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Employeurs', value: '5' },
+          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Travailleurs familiaux non rémunérés', value: '6' },
+          { label: 'Salariés réguliers', value: '7' },
+          { label: 'N\'a pas travaillé mais était à la recherche d\'un emploi et/ou disponible pour travailler', value: '8' },
+          { label: 'A fréquenté un établissement d\'enseignement', value: '9' },
+          { label: 'S\'occupe des tâches ménagères courantes', value: '10' },
+          { label: 'Mendiants', value: '11' },
+          { label: 'Prostituées/travailleurs du sexe', value: '12' },
+          { label: 'Rentiers, retraités, autres bénéficiaires de transferts de fonds', value: '13' },
+          { label: 'Incapable de travailler en raison d\'un handicap', value: '14' },
+          { label: 'Trop âgés pour travailler', value: '15' },
+          { label: 'Autres', value: '16' }
+        ]
+      },
+      {
+        id: 5,
+        text: 'Quel est votre plus haut niveau de qualification ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Analphabète', value: '0' },
+          { label: 'Primaire', value: '1' },
+          { label: 'Collège', value: '4' },
+          { label: 'Lycée', value: '5' },
+          { label: 'BTS/DUT ou equivalent BAC+2/BAC+3', value: '7' },
+          { label: 'BAC+5 ou supérieur', value: '8' },
+          { label: 'Autres', value: '9' }
+        ]
+      },
+      {
+        id: 6,
+        text: 'Quel est votre religion ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Hindous', value: '1' },
+          { label: 'Musulman', value: '2' },
+          { label: 'Chrétien', value: '3' },
+          { label: 'Sikh', value: '4' },
+          { label: 'Bouddhiste', value: '5' },
+          { label: 'Jain', value: '6' },
+          { label: 'Autres', value: '7' },
+          { label: 'Sans religion', value: '8' }
+        ]
+      },
+      {
+        id: 7,
+        text: 'Quel est votre rang de naissance au sein de votre famille ?',
+        fieldType: 'select',
+        options: [
+          { label: '0 (Premier enfant)', value: 0 },
+          { label: '1', value: '1' },
+          { label: '2', value: '2' },
+          { label: '3', value: '3' },
+          { label: '4', value: '4' },
+          { label: '5', value: '5' },
+          { label: '6', value: '6' },
+          { label: '7', value: '7' },
+          { label: '8', value: '8' },
+          { label: '9', value: '9' },
+          { label: '10', value: '10' }
+        ]
+      },
+      {
+        id: 8,
+        text: 'Est-ce que vous êtes diagnostiqué pour une maladie ?',
+        fieldType: 'select',
+        options: [
+          { label: "Diabète", value: "1" },
+          { label: "Hypertension", value: "2" },
+          { label: "Maladie cardiaque chronique", value: "3" },
+          { label: "Infarctus du myocarde/crise cardiaque", value: "4" },
+          { label: "Accident vasculaire cérébral/accident cérébrovasculaire", value: "5" },
+          { label: "Epilepsie", value: "6" },
+          { label: "Asthme/insuffisance respiratoire chronique", value: "7" },
+          { label: "Goitre/trouble thyroïdien", value: "8" },
+          { label: "Tuberculose", value: "9" },
+          { label: "Lèpre", value: "10" },
+          { label: "Cancer-Système respiratoire", value: "11" },
+          { label: "Cancer-Système gastro-intestinal", value: "12" },
+          { label: "Cancer-Système génito-urinaire", value: "13" },
+          { label: "Cancer du sein", value: "14" },
+          { label: "Calcul rénal", value: "15" },
+          { label: "Insuffisance rénale chronique", value: "16" },
+          { label: "Calcul biliaire/cholécystite", value: "17" },
+          { label: "Insuffisance hépatique chronique", value: "18" },
+          { label: "Arthrite rhumatoïde/ostéoarthrite", value: "19" },
+          { label: "Maladies cutanées chroniques - psoriasis", value: "20" },
+          { label: "Autres (hernie, hydrocèle, ulcère gastroduodénal, etc.)", value: "21" },
+          { label: "Non diagnostiqué", value: "0" },
+          { label: "Cataracte", value: "21" },
+          { label: "Glaucome", value: "22" },
+          { label: "Sinusite, Amygdalite", value: "23" },
+          { label: "Flourose", value: "24" },
+          { label: "Pyorrhée", value: "25" },
+          { label: "Rhumatisme articulaire aigu/Maladie cardiaque rhumatismale", value: "26" },
+          { label: "Tumeur (tout type)", value: "27" },
+          { label: "Cancer du sang/leucémie", value: "28" },
+          { label: "Cancer de la peau", value: "29" },
+          { label: "Piles/fissure anale, Fistule anale", value: "30" },
+          { label: "Anémie", value: "30" },
+          { label: "Autres (Hernie, Hydrocèle, Ulcère gastroduodénal, etc.) - utilisé dans la première et la deuxième enquête de mise à jour uniquement", value: "99" }
+        ]
+      },
+      {
+        id: 9,
+        text: 'Est ce que vous vivez à la campagne ou dans une ville ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Campagne', value: '1' },
+          { label: 'Ville', value: '2' }
+        ]
+      },
+      {
+        id: 10,
+        text: 'Est-ce que vous ête propriétaire ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Propriétaire', value: "1" },
+          { label: 'Locataire', value: "2" },
+          { label: 'Autres', value: "3" }
+        ]
+      },
+      {
+        id: 11,
+        text: 'Quelle est la taille de terrain possédé ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Moins de 200m2', value: "1" },
+          { label: 'Entre 200 et 1 000m2', value: "2" },
+          { label: 'Entre 1 000 et 4 000m2', value: "3" },
+          { label: 'Entre 4 000 et 10 000m2', value: "4" },
+          { label: 'Plus de 10 000m2', value: "5" },
+          { label: 'Non propriétaire de terrain', value: "6" }
+        ]
+      },
+      {
+        id: 12,
+        text: 'Comment avez-vous accès à l\'eau potable ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Eau courante dans le logement', value: "1" },
+          { label: 'Robinet public', value: "2" },
+          { label: 'Pompe à main', value: "3" },
+          { label: 'Puits tubulaire ou forage', value: "4" },
+          { label: 'Puits creusé protégé', value: "5" },
+          { label: 'Puits creusé non protégé', value: "6" },
+          { label: 'Citerne/camion/chariot avec eau', value: "7" },
+          { label: 'Eau de surface', value: "8" },
+          { label: 'Autres sources', value: "9" }
+        ]
+      },
+      {
+        id: 13,
+        text: 'Est-ce que l\'eau de votre robinet est filtrée ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Oui', value: "1" },
+          { label: 'Non', value: "2" }
+        ]
+      },
+      {
+        id: 14,
+        text: 'Est-ce que les toilettes sont partagées ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Oui', value: "1" },
+          { label: 'Non', value: "2" }
+        ]
+      },
+      {
+        id: 15,
+        text: 'Est-ce que votre logement a accès à l\'électricité ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Oui', value: "1" },
+          { label: 'Non', value: "2" }
+        ]
+      },
+      {
+        id: 16,
+        text: 'Quelle est la principale source d\'énergie pour l\'éclairage ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Électricité', value: "1" },
+          { label: 'Kérosène', value: "2" },
+          { label: 'Solaire', value: "3" },
+          { label: 'Autres', value: "5" },
+          { label: 'Pas d\'éclairage', value: "6" }
+        ]
+      },
+      {
+        id: 17,
+        text: 'Est-ce que vous disposez d\'une cuisine ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Cuisiner à l\'intérieur de la maison', value: "1" },
+          { label: 'N\'a pas de cuisine', value: "2" },
+          { label: 'Cuisiner à l\'extérieur de la maison', value: "3" },
+          { label: 'Autres', value: "5" },
+        ]
+      },
+      {
+        id: 18,
+        text: 'Est-ce que vous fumez ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Fumeur habituel', value: "1" },
+          { label: 'Fumeur occasionnel', value: "2" },
+          { label: 'Ex-fumeur', value: "3" },
+          { label: 'N\'a jamais fumé', value: "4" },
+          { label: 'Ne sais pas', value: "5" }
+        ]
+      },
+      {
+        id: 19,
+        text: 'Est-ce que vous consommez régulièrement de l\'alcool ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Buveur habituel', value: "1" },
+          { label: 'Buveur occasionnel', value: "2" },
+          { label: 'Ex-buveur', value: "3" },
+          { label: 'N\'a jamais bu', value: "4" },
+          { label: 'Ne sais pas', value: "5" }
+        ]
+      },
+      {
+        id: 20,
+        text: 'Est-ce que vous possédez un véhicule ?',
+        fieldType: 'select',
+        options: [
+          { label: 'Poussé par l\'animal', value: "1" },
+          { label: 'Poussé par une machine', value: "2" },
+          { label: 'Autres', value: "3" },
+          { label: 'Aucun', value: "4" }
+        ]
+      },
       { id: 21, text: 'Veuillez cocher les objets et véhicules que vous posséder ?', fieldType: 'checkbox'},
 
     ];
@@ -95,6 +287,8 @@ export class FormulaireComponent implements OnInit{
           Validators.min(1),
           Validators.max(120)
         ]);
+      } else if (question.fieldType === 'select' && question.options && question.options.length > 0) {
+        formControls[question.id.toString()] = new FormControl(question.options[0].value);
       } else {
         formControls[question.id.toString()] = new FormControl('');
       }
@@ -131,12 +325,9 @@ export class FormulaireComponent implements OnInit{
 
   submitForm() {
     if (this.form.valid) {
-      console.log(this.form.value);
-      // Traiter les données du formulaire ici
+      const data = this.form.value;
+      console.log(data);
     }
   }
 
-  convertirDataPourTraitement(data: any) {
-    
-  }
 }
