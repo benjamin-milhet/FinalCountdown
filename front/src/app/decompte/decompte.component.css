@@ -14,7 +14,7 @@
 
 /* Style pour chaque unité de temps */
 .temps {
-  font-size: 2em; /* Augmenter la taille du texte */
+  font-size: 1em; /* Augmenter la taille du texte */
   margin: 10px 0;
 }
 
@@ -23,4 +23,9 @@
   0% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
   50% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); }
   100% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+}
+
+.chiffre {
+  font-family: 'Nosifer', cursive;
+  font-size: 3em;
 }
