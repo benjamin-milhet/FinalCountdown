@@ -16,6 +16,7 @@
             "outputPath": "dist/the-final-countdown",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "/FinalCountdown/",
             "polyfills": [
               "zone.js"
             ],
@@ -91,6 +92,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
