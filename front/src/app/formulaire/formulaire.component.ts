@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {Question} from '../models/question.model';
 import {HttpClient} from "@angular/common/http";
+import {KeyMapType} from "../types/key-map.type";
 
 @Component({
   selector: 'app-formulaire',
@@ -15,7 +16,8 @@ export class FormulaireComponent implements OnInit{
   questionsPerPage = 6;
   totalQuestions = 30;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+
+constructor(private fb: FormBuilder, private http: HttpClient) {
     this.form = this.fb.group({});
   }
 
@@ -416,15 +418,70 @@ export class FormulaireComponent implements OnInit{
   submitForm() {
     if (this.form.valid) {
       const data = this.form.value;
-      console.log(data);
-      this.http.post<any>('http://localhost:5000/getDate', data).subscribe(response => {
-        console.log(response.date);
+
+      const keyMap: KeyMapType = {
+        '1': 'age',
+        '2': 'sex',
+        '3': 'marital_status',
+        '4': 'occupation_status',
+        '5': 'highest_qualification',
+        '6': 'religion',
+        '7': 'order_of_birth',
+        '8': 'diagnosed_for',
+        '9': 'iscoveredbyhealthscheme',
+        '10': 'disability_status',
+        '11': 'regular_treatment',
+        '12': 'rural',
+        '13': 'owner_status',
+        '14': 'land_possessed',
+        '15': 'drinking_water_source',
+        '16': 'is_water_filter',
+        '17': 'is_toilet_shared',
+        '18': 'household_have_electricity',
+        '19': 'lighting_source',
+        '20': 'cooking_fuel',
+        '21': 'no_of_dwelling_rooms',
+        '22': 'kitchen_availability',
+        '23': 'smoke',
+        '24': 'alcohol',
+        'is_radio': 'is_radio',
+        'is_television': 'is_television',
+        'is_computer': 'is_computer',
+        'is_telephone': 'is_telephone',
+        'is_washing_machine': 'is_washing_machine',
+        'is_refrigerator': 'is_refrigerator',
+        'is_sewing_machine': 'is_sewing_machine',
+        'is_bicycle': 'is_bicycle',
+        'is_water_pump': 'is_water_pump',
+        'is_scooter': 'is_scooter',
+        'is_car': 'is_car',
+        'is_tractor': 'is_tractor',
+      };
+
+      const newData = this.transformData(data, keyMap);
+      Object.keys(newData).forEach(key => {
+        if (typeof newData[key] === 'boolean') {
+          newData[key] = newData[key] ? '1' : '2';
+        }
+      });
+
+      this.http.post<any>('http://localhost:5000/getDate', newData).subscribe(response => {
         localStorage.setItem('date_mort', response.date);
         location.reload();
       });
-
-
     }
   }
 
+  transformData(data: Record<string, any>, keyMap: KeyMapType) {
+    const transformedData: Record<string, any> = {};
+
+    Object.keys(data).forEach(key => {
+      const newKey = keyMap[key];
+      if (newKey) {
+        transformedData[newKey] = data[key];
+      }
+    });
+
+    return transformedData;
+  }
 }
