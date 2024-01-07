@@ -1,0 +1,6 @@
+setup.py
+the_final_countdown.egg-info/PKG-INFO
+the_final_countdown.egg-info/SOURCES.txt
+the_final_countdown.egg-info/dependency_links.txt
+the_final_countdown.egg-info/requires.txt
+the_final_countdown.egg-info/top_level.txt
