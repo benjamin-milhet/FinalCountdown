@@ -1,0 +1,46 @@
+/* Style de base pour le modal */
+.modal {
+  display: none; /* Caché par défaut */
+  position: fixed; /* Reste en place */
+  z-index: 2; /* Situé au-dessus des autres éléments */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largeur complète */
+  height: 100%; /* Hauteur complète */
+  overflow: auto; /* Active le défilement si nécessaire */
+  background-color: rgba(0, 0, 0, 0.8); /* Fond noir avec opacité */
+}
+
+/* Contenu du modal */
+.modal-content {
+  background-color: #000; /* Fond noir */
+  color: #ff8c00; /* Texte orange */
+  margin: 10% auto; /* Positionnement vertical et centrage */
+  padding: 20px;
+  border: 1px solid #ff8c00; /* Bordure orange */
+  width: 50%; /* Largeur du modal */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Ombre pour un effet 3D */
+}
+
+/* Le bouton de fermeture */
+.close {
+  color: #ff8c00; /* Couleur du bouton */
+  float: right; /* Positionnement à droite */
+  font-size: 28px; /* Taille de la police */
+  font-weight: bold;
+}
+
+/* Effet au survol du bouton de fermeture */
+.close:hover,
+.close:focus {
+  color: white; /* Changement de couleur au survol */
+  text-decoration: none; /* Pas de soulignement */
+  cursor: pointer;
+}
+
+/* Adaptation aux petits écrans */
+@media screen and (max-width: 600px) {
+  .modal-content {
+    width: 90%; /* Largeur plus petite sur les écrans plus petits */
+  }
+}
