@@ -7,12 +7,14 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { DecompteComponent } from './decompte/decompte.component';
 import {HttpClientModule} from "@angular/common/http";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormulaireComponent,
-    DecompteComponent
+    DecompteComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
