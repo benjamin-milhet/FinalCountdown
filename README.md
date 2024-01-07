@@ -35,8 +35,8 @@ Lien vers notre site [The Final Countdown](https://benjamin-milhet.me/FinalCount
 ## Rendu final
 
 ### Page d'accueil
-![alt text](https://github.com/benjamin-milhet/FinalCountdown/blob/main/images/menu1.png?raw=true)
+![alt text](https://github.com/benjamin-milhet/FinalCountdown/blob/main/images/Q1.png?raw=true)
 
 ### Page du décompte
-![alt text](https://github.com/benjamin-milhet/FinalCountdown/blob/main/images/menu2.png?raw=true)
+![alt text](https://github.com/benjamin-milhet/FinalCountdown/blob/main/images/D1.png?raw=true)
 
