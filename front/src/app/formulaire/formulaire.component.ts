@@ -469,6 +469,11 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         localStorage.setItem('date_mort', response.date);
         location.reload();
       });
+
+      /*this.http.post<any>('https://api-finalcountdown.onrender.com/getDate', newData).subscribe(response => {
+        localStorage.setItem('date_mort', response.date);
+        location.reload();
+      });*/
     }
   }
 
