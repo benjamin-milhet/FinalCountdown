@@ -1,6 +1,5 @@
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
-    <!-- Boucle pour itérer sur les questions de la page actuelle -->
     <div *ngFor="let question of questions.slice(currentPage * questionsPerPage, (currentPage + 1) * questionsPerPage)" class="form-group">
       <label>{{ question.text }}</label>
       <div [ngSwitch]="question.fieldType">
@@ -68,7 +67,6 @@
       </div>
     </div>
 
-    <!-- Boutons de Pagination -->
     <div class="form-group">
       <button type="button" (click)="previousPage()" *ngIf="currentPage > 0" class="btn btn-custom mr-2">Précédent</button>
       <button type="button" (click)="nextPage()" *ngIf="currentPage < totalQuestions / questionsPerPage - 1" class="btn btn-custom mr-2">Suivant</button>

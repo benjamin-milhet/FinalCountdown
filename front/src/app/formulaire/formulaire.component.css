@@ -1,37 +1,32 @@
-/* Fond du formulaire */
 .form-container {
-  background-color: #333; /* Couleur de fond (ajustez selon vos préférences) */
+  background-color: #333;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 600px; /* Ajustez la largeur maximale selon vos besoins */
+  max-width: 600px;
   border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ombre portée pour l'effet "flottant" */
-  margin-bottom: 50px; /* Espace en bas */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 50px;
 }
 
-/* Titre du formulaire */
 .form-title {
   color: white;
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Styles des champs de formulaire */
 .form-control {
-  background-color: #222; /* Noir */
+  background-color: #222;
   color: white;
   border: 1px solid #555;
 }
 
-/* Styles pour les labels */
 label {
-  color: #ddd; /* Gris clair */
+  color: #ddd;
 }
 
-/* Boutons avec une touche d'orange */
 .btn-custom {
-  background-color: #ff8c00; /* Orange */
+  background-color: #ff8c00;
   color: white;
   border: none;
 }
@@ -40,19 +35,17 @@ label {
   background-color: #ff7b00;
 }
 
-/* Style du conteneur de la case à cocher */
 .checkbox-container {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-/* Style personnalisé de la case à cocher */
 .custom-checkbox {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  border: 2px solid #ff8c00; /* Couleur de la bordure */
+  border: 2px solid #ff8c00;
   border-radius: 4px;
   background-color: transparent;
   appearance: none;
@@ -60,15 +53,13 @@ label {
   -moz-appearance: none;
 }
 
-/* Style lorsque la case à cocher est cochée */
 .custom-checkbox:checked {
-  background-color: #ff8c00; /* Couleur de fond lorsqu'elle est cochée */
+  background-color: #ff8c00;
   border-color: #ff8c00;
 }
 
-/* Style du label de la case à cocher */
 .checkbox-label {
   font-size: 16px;
-  color: #ffffff; /* Couleur du texte */
+  color: #ffffff;
 }
 
