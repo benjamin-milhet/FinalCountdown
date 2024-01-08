@@ -1,3 +1,5 @@
+<div *ngIf="isLoading" class="loading-bar"></div>
+
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
     <div *ngFor="let question of questions.slice(currentPage * questionsPerPage, (currentPage + 1) * questionsPerPage)" class="form-group">
@@ -6,7 +8,7 @@
         <input *ngSwitchCase="'text'" type="text" [formControlName]="question.id.toString()" class="form-control">
         <input *ngSwitchCase="'number'" type="number" [formControlName]="question.id.toString()" class="form-control" min="1" max="120">
         <select *ngSwitchCase="'select'" [formControlName]="question.id.toString()" class="form-control">
-          <option *ngFor="let option of question.options" [value]="option.value">{{ option.label }}</option>
+          <option *ngFor="let option of question.options" [value]=option.value>{{ option.label }}</option>
         </select>
         <div *ngSwitchCase="'radio'">
           <div *ngFor="let option of question.options" class="form-check">

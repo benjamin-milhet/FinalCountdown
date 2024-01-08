@@ -15,9 +15,10 @@ export class FormulaireComponent implements OnInit{
   currentPage = 0;
   questionsPerPage = 6;
   totalQuestions = 30;
+  isLoading = false;
 
 
-constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.form = this.fb.group({});
   }
 
@@ -27,32 +28,31 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
   }
 
   loadQuestions() {
-    // Ici, charger ou définir vos questions
     this.questions = [
       { id: 1, text: 'Quel est votre âge ?', fieldType: 'number' },
-      { id: 2, text: 'Quel est votre sexe ?', fieldType: 'select', options: [{ label: 'Homme', value: '1' }, { label: 'Femme', value: '2' }] },
-      { id: 3, text: 'Quel est votre statut marital ?', fieldType: 'select', options: [{ label: 'Célibataire', value: '1' }, { label: 'Marié(e)', value: '2' }, { label: 'Remarié(e)', value: '4' }, { label: 'Veuf(ve)', value: '5' }, { label: 'Divorcé(e)', value: '6' }, { label: 'Non précisé', value: '8' }] },
+      { id: 2, text: 'Quel est votre sexe ?', fieldType: 'select', options: [{ label: 'Homme', value: 1 }, { label: 'Femme', value: 0 }] },
+      { id: 3, text: 'Quel est votre statut marital ?', fieldType: 'select', options: [{ label: 'Célibataire', value: 2 }, { label: 'Marié(e)', value: 1 }, { label: 'Remarié(e)', value: 4 }, { label: 'Veuf(ve)', value: 5 }, { label: 'Divorcé(e)', value: 0 }, { label: 'Non précisé', value: 3 }] },
       {
         id: 4,
         text: 'Quel est votre statut professionnel ?',
         fieldType: 'select',
         options: [
-          { label: 'Cultivateur', value: '1' },
-          { label: 'Ouvrier agricole salarié', value: '2' },
-          { label: 'Travailleur salarié non agricole', value: '3' },
-          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - travailleurs à leur compte', value: '4' },
-          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Employeurs', value: '5' },
-          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Travailleurs familiaux non rémunérés', value: '6' },
-          { label: 'Salariés réguliers', value: '7' },
-          { label: 'N\'a pas travaillé mais était à la recherche d\'un emploi et/ou disponible pour travailler', value: '8' },
-          { label: 'A fréquenté un établissement d\'enseignement', value: '9' },
-          { label: 'S\'occupe des tâches ménagères courantes', value: '10' },
-          { label: 'Mendiants', value: '11' },
-          { label: 'Prostituées/travailleurs du sexe', value: '12' },
-          { label: 'Rentiers, retraités, autres bénéficiaires de transferts de fonds', value: '13' },
-          { label: 'Incapable de travailler en raison d\'un handicap', value: '14' },
-          { label: 'Trop âgés pour travailler', value: '15' },
-          { label: 'Autres', value: '16' }
+          { label: 'Cultivateur', value: 4 },
+          { label: 'Ouvrier agricole salarié', value: 0 },
+          { label: 'Travailleur salarié non agricole', value: 6 },
+          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - travailleurs à leur compte', value: 13 },
+          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Employeurs', value: 12 },
+          { label: 'Travailleurs indépendants (à l\'exclusion des cultivateurs) - Travailleurs familiaux non rémunérés', value: 15 },
+          { label: 'Salariés réguliers', value: 10 },
+          { label: 'N\'a pas travaillé mais était à la recherche d\'un emploi et/ou disponible pour travailler', value: 5 },
+          { label: 'Participant à une institution éducative', value: 1 },
+          { label: 'S\'occupe des tâches ménagères courantes', value: 2 },
+          { label: 'Mendiants', value: 3 },
+          { label: 'Prostituées/travailleurs du sexe', value: 9 },
+          { label: 'Rentiers, retraités, autres bénéficiaires de transferts de fonds', value: 11 },
+          { label: 'Incapable de travailler en raison d\'un handicap', value: 7 },
+          { label: 'Trop âgés pour travailler', value: 14 },
+          { label: 'Autres', value: 8 }
         ]
       },
       {
@@ -60,13 +60,13 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quel est votre plus haut niveau de qualification ?',
         fieldType: 'select',
         options: [
-          { label: 'Analphabète', value: '0' },
-          { label: 'Primaire', value: '1' },
-          { label: 'Collège', value: '4' },
-          { label: 'Lycée', value: '5' },
-          { label: 'BTS/DUT ou equivalent BAC+2/BAC+3', value: '7' },
-          { label: 'BAC+5 ou supérieur', value: '8' },
-          { label: 'Autres', value: '9' }
+          { label: 'Analphabète', value: 2 },
+          { label: 'Primaire', value: 3 },
+          { label: 'Collège', value: 4 },
+          { label: 'Lycée', value: 6 },
+          { label: 'BTS/DUT ou equivalent BAC+2/BAC+3', value: 1 },
+          { label: 'BAC+5 ou supérieur', value: 5 },
+          { label: 'Autres', value: 0 }
         ]
       },
       {
@@ -74,14 +74,14 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quel est votre religion ?',
         fieldType: 'select',
         options: [
-          { label: 'Hindous', value: '1' },
-          { label: 'Musulman', value: '2' },
-          { label: 'Chrétien', value: '3' },
-          { label: 'Sikh', value: '4' },
-          { label: 'Bouddhiste', value: '5' },
-          { label: 'Jain', value: '6' },
-          { label: 'Autres', value: '7' },
-          { label: 'Sans religion', value: '8' }
+          { label: 'Hindous', value: 2 },
+          { label: 'Musulman', value: 4 },
+          { label: 'Chrétien', value: 1 },
+          { label: 'Sikh', value: 5 },
+          { label: 'Bouddhiste', value: 0 },
+          { label: 'Jain', value: 3 },
+          { label: 'Autres', value: 6 },
+          { label: 'Sans religion', value: 7 }
         ]
       },
       {
@@ -89,17 +89,17 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quel est votre rang de naissance au sein de votre famille ?',
         fieldType: 'select',
         options: [
-          { label: '0 (Premier enfant)', value: '0' },
-          { label: '1', value: '1' },
-          { label: '2', value: '2' },
-          { label: '3', value: '3' },
-          { label: '4', value: '4' },
-          { label: '5', value: '5' },
-          { label: '6', value: '6' },
-          { label: '7', value: '7' },
-          { label: '8', value: '8' },
-          { label: '9', value: '9' },
-          { label: '10', value: '10' }
+          { label: '0 (Premier enfant)', value: 0 },
+          { label: '1', value: 1 },
+          { label: '2', value: 2 },
+          { label: '3', value: 3 },
+          { label: '4', value: 4 },
+          { label: '5', value: 5 },
+          { label: '6', value: 6 },
+          { label: '7', value: 7 },
+          { label: '8', value: 8 },
+          { label: '9', value: 9 },
+          { label: '10', value: 10 }
         ]
       },
       {
@@ -107,40 +107,40 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous êtes diagnostiqué pour une maladie ?',
         fieldType: 'select',
         options: [
-          { label: "Diabète", value: "1" },
-          { label: "Hypertension", value: "2" },
-          { label: "Maladie cardiaque chronique", value: "3" },
-          { label: "Infarctus du myocarde/crise cardiaque", value: "4" },
-          { label: "Accident vasculaire cérébral/accident cérébrovasculaire", value: "5" },
-          { label: "Epilepsie", value: "6" },
-          { label: "Asthme/insuffisance respiratoire chronique", value: "7" },
-          { label: "Goitre/trouble thyroïdien", value: "8" },
-          { label: "Tuberculose", value: "9" },
-          { label: "Lèpre", value: "10" },
-          { label: "Cancer-Système respiratoire", value: "11" },
-          { label: "Cancer-Système gastro-intestinal", value: "12" },
-          { label: "Cancer-Système génito-urinaire", value: "13" },
-          { label: "Cancer du sein", value: "14" },
-          { label: "Calcul rénal", value: "15" },
-          { label: "Insuffisance rénale chronique", value: "16" },
-          { label: "Calcul biliaire/cholécystite", value: "17" },
-          { label: "Insuffisance hépatique chronique", value: "18" },
-          { label: "Arthrite rhumatoïde/ostéoarthrite", value: "19" },
-          { label: "Maladies cutanées chroniques - psoriasis", value: "20" },
-          { label: "Autres (hernie, hydrocèle, ulcère gastroduodénal, etc.)", value: "21" },
-          { label: "Non diagnostiqué", value: "0" },
-          { label: "Cataracte", value: "21" },
-          { label: "Glaucome", value: "22" },
-          { label: "Sinusite, Amygdalite", value: "23" },
-          { label: "Flourose", value: "24" },
-          { label: "Pyorrhée", value: "25" },
-          { label: "Rhumatisme articulaire aigu/Maladie cardiaque rhumatismale", value: "26" },
-          { label: "Tumeur (tout type)", value: "27" },
-          { label: "Cancer du sang/leucémie", value: "28" },
-          { label: "Cancer de la peau", value: "29" },
-          { label: "Piles/fissure anale, Fistule anale", value: "30" },
-          { label: "Anémie", value: "30" },
-          { label: "Autres (Hernie, Hydrocèle, Ulcère gastroduodénal, etc.) - utilisé dans la première et la deuxième enquête de mise à jour uniquement", value: "99" }
+          { label: "Diabète", value: 11 },
+          { label: "Hypertension", value: 16 },
+          { label: "Maladie cardiaque chronique", value: 7 },
+          { label: "Infarctus du myocarde/crise cardiaque", value: 18 },
+          { label: "Accident vasculaire cérébral/accident cérébrovasculaire", value: 28 },
+          { label: "Epilepsie", value: 12 },
+          { label: "Asthme/insuffisance respiratoire chronique", value: 0 },
+          { label: "Goitre/trouble thyroïdien", value: 15 },
+          { label: "Tuberculose", value: 29 },
+          { label: "Lèpre", value: 17 },
+          { label: "Cancer-Système respiratoire", value: 5 },
+          { label: "Cancer-Système gastro-intestinal", value: 3 },
+          { label: "Cancer-Système génito-urinaire", value: 4 },
+          { label: "Cancer du sein", value: 2 },
+          { label: "Calcul rénaux", value: 24 },
+          { label: "Insuffisance rénale chronique", value: 9 },
+          { label: "Calcul biliaire/cholécystite", value: 13 },
+          { label: "Insuffisance hépatique chronique", value: 8 },
+          { label: "Arthrite rhumatoïde/ostéoarthrite", value: 25 },
+          { label: "Maladies cutanées chroniques - psoriasis", value: 10 },
+          { label: "Autres (hernie, hydrocèle, ulcère gastroduodénal, etc.)", value: 22 },
+          { label: "Non diagnostiqué", value: 20 },
+          { label: "Cataracte", value: 6 },
+          { label: "Glaucome", value: 14 },
+          { label: "Sinusite, Amygdalite", value: 26 },
+          { label: "Flourose", value: 20 },
+          { label: "Pyorrhée", value: 23 },
+          { label: "Rhumatisme articulaire aigu/Maladie cardiaque rhumatismale", value: 20 },
+          { label: "Tumeur (tout type)", value: 30 },
+          { label: "Cancer du sang/leucémie", value: 1 },
+          { label: "Cancer de la peau", value: 27 },
+          { label: "Piles/fissure anale, Fistule anale", value: 20 },
+          { label: "Anémie", value: 20 },
+          { label: "Aucune", value: 19 },
         ]
       },
       {
@@ -148,9 +148,9 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous possédez une couverture santé ?',
         fieldType: 'select',
         options: [
-          { label: 'Oui', value: '1' },
-          { label: 'Non', value: '2' },
-          { label: 'Ne sais pas', value: '3' }
+          { label: 'Oui', value: 2 },
+          { label: 'Non', value: 1 },
+          { label: 'Ne sais pas', value: 0 }
         ]
       },
       {
@@ -158,14 +158,14 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous possédez un handicap ?',
         fieldType: 'select',
         options: [
-          { label: 'Mental', value: '1' },
-          { label: 'Visuel', value: '2' },
-          { label: 'L\'ouïe', value: '3' },
-          { label: 'Parole', value: '4' },
-          { label: 'Locomoteurs', value: '5' },
-          { label: 'Multiple', value: '6' },
-          { label: 'Pas de handicap', value: '0' },
-          { label: 'Autres', value: '7' },
+          { label: 'Mental', value: 2 },
+          { label: 'Visuel', value: 7 },
+          { label: 'L\'ouïe', value: 0 },
+          { label: 'Parole', value: 6 },
+          { label: 'Locomoteurs', value: 1 },
+          { label: 'Multiple', value: 3 },
+          { label: 'Pas de handicap', value: 4 },
+          { label: 'Autres', value: 5 },
         ]
       },
       {
@@ -173,9 +173,9 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous possédez un traitement régulier ?',
         fieldType: 'select',
         options: [
-          { label: 'Oui', value: '2' },
-          { label: 'Oui mais pas régulier', value: '1' },
-          { label: 'Non', value: '3' },
+          { label: 'Oui', value: 2 },
+          { label: 'Oui mais pas régulier', value: 1 },
+          { label: 'Non', value: 0 },
         ]
       },
       {
@@ -183,8 +183,8 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous vivez à la campagne ou dans une ville ?',
         fieldType: 'select',
         options: [
-          { label: 'Campagne', value: '1' },
-          { label: 'Ville', value: '2' }
+          { label: 'Campagne', value: 1 },
+          { label: 'Ville', value: 0 }
         ]
       },
       {
@@ -192,9 +192,9 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous ête propriétaire ?',
         fieldType: 'select',
         options: [
-          { label: 'Propriétaire', value: "1" },
-          { label: 'Locataire', value: "2" },
-          { label: 'Autres', value: "3" }
+          { label: 'Propriétaire', value: 1 },
+          { label: 'Locataire', value: 2 },
+          { label: 'Autres', value: 0 }
         ]
       },
       {
@@ -202,12 +202,12 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quelle est la taille de terrain possédé ?',
         fieldType: 'select',
         options: [
-          { label: 'Moins de 200m2', value: "1" },
-          { label: 'Entre 200 et 1 000m2', value: "2" },
-          { label: 'Entre 1 000 et 4 000m2', value: "3" },
-          { label: 'Entre 4 000 et 10 000m2', value: "4" },
-          { label: 'Plus de 10 000m2', value: "5" },
-          { label: 'Non propriétaire de terrain', value: "6" }
+          { label: 'Moins de 200m2', value: 4 },
+          { label: 'Entre 200 et 1 000m2', value: 0 },
+          { label: 'Entre 1 000 et 4 000m2', value: 1 },
+          { label: 'Entre 4 000 et 10 000m2', value: 3 },
+          { label: 'Plus de 10 000m2', value: 2 },
+          { label: 'Non propriétaire de terrain', value: 5 }
         ]
       },
       {
@@ -215,15 +215,15 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Comment avez-vous accès à l\'eau potable ?',
         fieldType: 'select',
         options: [
-          { label: 'Eau courante dans le logement', value: "1" },
-          { label: 'Robinet public', value: "2" },
-          { label: 'Pompe à main', value: "3" },
-          { label: 'Puits tubulaire ou forage', value: "4" },
-          { label: 'Puits creusé protégé', value: "5" },
-          { label: 'Puits creusé non protégé', value: "6" },
-          { label: 'Citerne/camion/chariot avec eau', value: "7" },
-          { label: 'Eau de surface', value: "8" },
-          { label: 'Autres sources', value: "9" }
+          { label: 'Eau courante dans le logement', value: 3 },
+          { label: 'Robinet public', value: 5 },
+          { label: 'Pompe à main', value: 1 },
+          { label: 'Puits tubulaire ou forage', value: 0 },
+          { label: 'Puits creusé protégé', value: 4 },
+          { label: 'Puits creusé non protégé', value: 7 },
+          { label: 'Citerne/camion/chariot avec eau', value: 8 },
+          { label: 'Eau de surface', value: 6 },
+          { label: 'Autres sources', value: 2 }
         ]
       },
       {
@@ -231,8 +231,8 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que l\'eau de votre robinet est filtrée ?',
         fieldType: 'select',
         options: [
-          { label: 'Oui', value: "1" },
-          { label: 'Non', value: "2" }
+          { label: 'Oui', value: 1 },
+          { label: 'Non', value: 0 }
         ]
       },
       {
@@ -240,8 +240,8 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que les toilettes sont partagées ?',
         fieldType: 'select',
         options: [
-          { label: 'Oui', value: "1" },
-          { label: 'Non', value: "2" }
+          { label: 'Oui', value: 1 },
+          { label: 'Non', value: 0 }
         ]
       },
       {
@@ -249,8 +249,8 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que votre logement a accès à l\'électricité ?',
         fieldType: 'select',
         options: [
-          { label: 'Oui', value: "1" },
-          { label: 'Non', value: "2" }
+          { label: 'Oui', value: 1 },
+          { label: 'Non', value: 0 }
         ]
       },
       {
@@ -258,11 +258,11 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quelle est la principale source d\'énergie pour l\'éclairage ?',
         fieldType: 'select',
         options: [
-          { label: 'Électricité', value: "1" },
-          { label: 'Kérosène', value: "2" },
-          { label: 'Solaire', value: "3" },
-          { label: 'Autres', value: "5" },
-          { label: 'Pas d\'éclairage', value: "6" }
+          { label: 'Électricité', value: 1 },
+          { label: 'Kérosène', value: 2 },
+          { label: 'Solaire', value: 4 },
+          { label: 'Autres', value: 0 },
+          { label: 'Pas d\'éclairage', value: 3 }
         ]
       },
       {
@@ -270,16 +270,16 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quelle est la principale source d\'énergie pour cuisiner ?',
         fieldType: 'select',
         options: [
-          { label: 'Bois de chauffage', value: "1" },
-          { label: 'Résidus de culture', value: "2" },
-          { label: 'Bouse de vache', value: "3" },
-          { label: 'Charbon', value: "4" },
-          { label: 'Kérosène', value: "5" },
-          { label: 'GPL', value: "6" },
-          { label: 'Électricité', value: "7" },
-          { label: 'Biogaz', value: "8" },
-          { label: 'Autre', value: "9" },
-          { label: 'Pas de cuisine', value: "0" },
+          { label: 'Bois de chauffage', value: 6 },
+          { label: 'Résidus de culture', value: 4 },
+          { label: 'Bouse de vache', value: 3 },
+          { label: 'Charbon', value: 2 },
+          { label: 'Kérosène', value: 7 },
+          { label: 'GPL', value: 8 },
+          { label: 'Électricité', value: 5 },
+          { label: 'Biogaz', value: 1 },
+          { label: 'Autre', value: 0 },
+          { label: 'Pas de cuisine', value: 9 },
         ]
       },
       {
@@ -287,17 +287,17 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Quelle est le nombre de pièce d\'habitation dans la maison ?',
         fieldType: 'select',
         options: [
-          { label: '0', value: '0' },
-          { label: '1', value: '1' },
-          { label: '2', value: '2' },
-          { label: '3', value: '3' },
-          { label: '4', value: '4' },
-          { label: '5', value: '5' },
-          { label: '6', value: '6' },
-          { label: '7', value: '7' },
-          { label: '8', value: '8' },
-          { label: '9', value: '9' },
-          { label: '10', value: '10' }
+          { label: '0', value: 0 },
+          { label: '1', value: 1 },
+          { label: '2', value: 2 },
+          { label: '3', value: 3 },
+          { label: '4', value: 4 },
+          { label: '5', value: 5 },
+          { label: '6', value: 6 },
+          { label: '7', value: 7 },
+          { label: '8', value: 8 },
+          { label: '9', value: 9 },
+          { label: '10', value: 10 }
         ]
       },
       {
@@ -305,10 +305,10 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous disposez d\'une cuisine ?',
         fieldType: 'select',
         options: [
-          { label: 'Cuisine à l\'intérieur de la maison', value: "1" },
-          { label: 'N\'a pas de cuisine', value: "2" },
-          { label: 'Cuisine à l\'extérieur de la maison', value: "3" },
-          { label: 'Autres', value: "5" },
+          { label: 'Cuisine à l\'intérieur de la maison', value: 1 },
+          { label: 'N\'a pas de cuisine', value: 0 },
+          { label: 'Cuisine à l\'extérieur de la maison', value: 2 },
+          { label: 'Autres', value: 3 },
         ]
       },
       {
@@ -316,11 +316,11 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous fumez ?',
         fieldType: 'select',
         options: [
-          { label: 'Fumeur habituel', value: "1" },
-          { label: 'Fumeur occasionnel', value: "2" },
-          { label: 'Ex-fumeur', value: "3" },
-          { label: 'N\'a jamais fumé', value: "4" },
-          { label: 'Ne sais pas', value: "5" }
+          { label: 'Fumeur habituel', value: 1 },
+          { label: 'Fumeur occasionnel', value: 0 },
+          { label: 'Ex-fumeur', value: 2 },
+          { label: 'N\'a jamais fumé', value: 3 },
+          { label: 'Ne sais pas', value: 4 }
         ]
       },
       {
@@ -328,11 +328,11 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
         text: 'Est-ce que vous consommez régulièrement de l\'alcool ?',
         fieldType: 'select',
         options: [
-          { label: 'Buveur habituel', value: "1" },
-          { label: 'Buveur occasionnel', value: "2" },
-          { label: 'Ex-buveur', value: "3" },
-          { label: 'N\'a jamais bu', value: "4" },
-          { label: 'Ne sais pas', value: "5" }
+          { label: 'Buveur habituel', value: 1 },
+          { label: 'Buveur occasionnel', value: 0 },
+          { label: 'Ex-buveur', value: 2 },
+          { label: 'N\'a jamais bu', value: 3 },
+          { label: 'Ne sais pas', value: 4 }
         ]
       },
       { id: 25, text: 'Veuillez cocher les objets et véhicules que vous posséder ?', fieldType: 'checkbox'},
@@ -346,7 +346,7 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
     this.questions.forEach(question => {
       if (question.fieldType === 'number') {
         formControls[question.id.toString()] = new FormControl(18, [
-          Validators.min(1),
+          Validators.min(0),
           Validators.max(120)
         ]);
       } else if (question.fieldType === 'select' && question.options && question.options.length > 0) {
@@ -355,7 +355,7 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
               formControls[question.id.toString()] = new FormControl(question.options[7].value);
               break;
             case 8:
-              formControls[question.id.toString()] = new FormControl(question.options[21].value);
+              formControls[question.id.toString()] = new FormControl(question.options[33].value);
               break;
             case 10:
               formControls[question.id.toString()] = new FormControl(question.options[6].value);
@@ -461,19 +461,35 @@ constructor(private fb: FormBuilder, private http: HttpClient) {
       const newData = this.transformData(data, keyMap);
       Object.keys(newData).forEach(key => {
         if (typeof newData[key] === 'boolean') {
-          newData[key] = newData[key] ? '1' : '2';
+          newData[key] = newData[key] ? 1 : 0;
         }
       });
 
-      this.http.post<any>('http://localhost:5000/getDate', newData).subscribe(response => {
-        localStorage.setItem('date_mort', response.date);
-        location.reload();
-      });
+      const numericData: { [key: string]: number } = {};
+      for (const key in newData) {
+        if (newData.hasOwnProperty(key)) {
+          numericData[key] = isNaN(Number(newData[key])) ? data[key] : Number(newData[key]);
+        }
+      }
 
-      /*this.http.post<any>('https://api-finalcountdown.onrender.com/getDate', newData).subscribe(response => {
+      /*this.http.post<any>('https://api-finalcountdown.onrender.com/getDate', newData).subscribe(
         localStorage.setItem('date_mort', response.date);
         location.reload();
       });*/
+      console.log(numericData)
+      this.isLoading = true;
+      this.http.post<any>('http://localhost:5000/getDate', numericData).subscribe(
+        response => {
+          localStorage.setItem('date_mort', response.date);
+          location.reload();
+        },
+        error => {
+          console.error('Erreur lors de la soumission', error);
+        },
+        () => {
+          this.isLoading = false;
+        }
+      );
     }
   }
 

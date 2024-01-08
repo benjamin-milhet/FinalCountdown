@@ -1,3 +1,8 @@
 Flask
 Flask-CORS
+os
+xgboost
+pandas
+joblib
+datetime
 gunicorn
