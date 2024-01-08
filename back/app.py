@@ -69,4 +69,9 @@ def getDate():
     new_prediction = loaded_model.predict(df)
 
     print(new_prediction)
+
+    new_prediction = new_prediction / 70 * 85
+
+    print(new_prediction)
+
     return jsonify({"date": calculate_datetime_change(new_prediction[0], data['age'])})

@@ -476,6 +476,7 @@ export class FormulaireComponent implements OnInit{
         localStorage.setItem('date_mort', response.date);
         location.reload();
       });*/
+
       console.log(numericData)
       this.isLoading = true;
       this.http.post<any>('http://localhost:5000/getDate', numericData).subscribe(
