@@ -5,7 +5,9 @@
 
 <app-formulaire *ngIf="!dateMort"></app-formulaire>
 
-<app-decompte *ngIf="dateMort" [targetDate]="dateMort"></app-decompte>
+<app-decompte *ngIf="dateMort && dateMort > today" [targetDate]="dateMort"></app-decompte>
+
+<app-survivant *ngIf="dateMort && dateMort <= today" [targetDateMort]="dateMort"></app-survivant>
 
 <app-footer></app-footer>
 

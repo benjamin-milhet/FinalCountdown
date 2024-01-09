@@ -8,13 +8,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { DecompteComponent } from './decompte/decompte.component';
 import {HttpClientModule} from "@angular/common/http";
 import { FooterComponent } from './footer/footer.component';
+import { SurvivantComponent } from './survivant/survivant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormulaireComponent,
     DecompteComponent,
-    FooterComponent
+    FooterComponent,
+    SurvivantComponent
   ],
   imports: [
     BrowserModule,

@@ -8,8 +8,15 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements  OnInit{
   title = 'The-final-countdown';
   dateMort: string | null = null;
+  today: string;
+
+  constructor() {
+    this.today = this.formatDate(new Date());
+    console.log(this.today);
+  }
 
   ngOnInit() {
+
     this.dateMort = localStorage.getItem('date_mort');
     this.showModal();
   }
@@ -31,5 +38,20 @@ export class AppComponent implements  OnInit{
         }
       }
     }
+  }
+
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = this.padTo2Digits(date.getMonth() + 1);
+    const day = this.padTo2Digits(date.getDate());
+    const hours = this.padTo2Digits(date.getHours());
+    const minutes = this.padTo2Digits(date.getMinutes());
+    const seconds = this.padTo2Digits(date.getSeconds());
+
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  }
+
+  padTo2Digits(num: number): string {
+    return num.toString().padStart(2, '0');
   }
 }

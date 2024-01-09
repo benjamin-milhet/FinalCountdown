@@ -17,7 +17,6 @@ export class FormulaireComponent implements OnInit{
   totalQuestions = 30;
   isLoading = false;
 
-
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.form = this.fb.group({});
   }
